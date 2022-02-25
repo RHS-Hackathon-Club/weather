@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Weather</title>
+    <!--<link rel="stylesheet" href="styles.css">-->
+    <!--<link rel="shortcut icon" type="image/png" href="favicon.png">-->
+  </head>
+  <body>
+    <label>Y Axis Max: </label><input type="text" id="ymax"><br>
+    <label>Y Axis Min: </label><input type="text" id="ymin"><br>
+    <label>Graph Tension: </label><input type="text" id="tension"><br>
+    <button onclick="setGraphValues()">Set</button>
+    <canvas></canvas>
+  </body>
+  <script src="main.js"></script>
+</html>
