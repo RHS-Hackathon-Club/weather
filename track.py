@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 import os
 import time
-log_file = 'log2.csv'
+import pandas
+log_file = 'log.csv'
 log_interval = 60 # seconds
 
 def sensor():
@@ -23,6 +24,8 @@ if __name__ == '__main__':
         while True:
             print(f'{time.time()}, {read(s)}')
             log(log_file)
+            df = pandas.read_csv(log_file)
+            df.to_json(r'log.json')
             time.sleep(log_interval)
 
     except KeyboardInterrupt:
