@@ -1,9 +1,16 @@
 #!/usr/bin/env python
 import os
 import time
-import pandas
-log_file = 'log.csv'
+import pymongo
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+
+log_file = '~/log.csv'
 log_interval = 60 # seconds
+client = MongoClient("mongodb+srv://admin:beckrekekre@cluster0.uc4dj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", server_api=ServerApi('1'))
+
+db = client.weather
+collection = db.data
 
 def sensor():
     for i in os.listdir('/sys/bus/w1/devices'):
@@ -23,9 +30,9 @@ if __name__ == '__main__':
         s = sensor()
         while True:
             print(f'{time.time()}, {read(s)}')
+            #use insert_one()
+            data.insert_one({"timestamp":time.time(), "temperature":read(s)})
             log(log_file)
-            df = pandas.read_csv(log_file)
-            df.to_json(r'log.json')
             time.sleep(log_interval)
 
     except KeyboardInterrupt:
