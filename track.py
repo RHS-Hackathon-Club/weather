@@ -5,7 +5,7 @@ import pymongo
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
-log_file = '~/log.csv'
+log_file = 'log.csv'
 log_interval = 60 # seconds
 client = MongoClient("mongodb+srv://admin:beckrekekre@cluster0.uc4dj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", server_api=ServerApi('1'))
 
@@ -31,7 +31,7 @@ if __name__ == '__main__':
         while True:
             print(f'{time.time()}, {read(s)}')
             #use insert_one()
-            data.insert_one({"timestamp":time.time(), "temperature":read(s)})
+            collection.insert_one({"timestamp":time.time(), "temperature":read(s)})
             log(log_file)
             time.sleep(log_interval)
 
