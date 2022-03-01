@@ -7,8 +7,8 @@ from pymongo.server_api import ServerApi
 
 log_file = 'log.csv'
 log_interval = 60 # seconds
-# station_name = 
-# ^^ fill this string with corresponding station name when copying to ~
+#station_name = 
+# ^^ fill this with corresponding station id when copying to ~
 client = MongoClient("mongodb+srv://admin:beckrekekre@cluster0.uc4dj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", server_api=ServerApi('1'))
 
 db = client.weather
@@ -31,7 +31,7 @@ if __name__ == '__main__':
     try:
         s = sensor()
         while True:
-            print(f'{int(time.time()}), {int(read(s)*10)/10}')
+            print(f'{int(time.time())}, {int(read(s)*10)/10}')
             collection.insert_one({"station":station_name, "time":int(time.time()), "temp":int(read(s)*10)/10})
             log(log_file)
             time.sleep(log_interval)
