@@ -1,14 +1,17 @@
 import flask
 from flask import request
 import pymongo
-import jsonify
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from flask_pymongo import PyMongo
+
+app = flask.Flask(__name__)
+app.config["MONGO_URI"] = "mongodb+srv://admin:beckrekekre@cluster0.uc4dj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+app.config["DEBUG"] = True
 
 client = MongoClient("mongodb+srv://admin:beckrekekre@cluster0.uc4dj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", server_api=ServerApi('1'))
 
-app = flask.Flask(__name__)
-app.config["DEBUG"] = True
+mongo = PyMongo(app)
 
 db = client.weather
 collection = db.data
@@ -23,12 +26,7 @@ def page():
     time = request.args['time']
     filters = request.args['filters']
 
-    results = collection.find({"time":time})
-
-#    return f"station name is {station}, the time is {time}, and the filters added are {filters}"
-
-    for result in results:
-        return jsonify(result.to_json())
-
+    return mongo.db.data.find_one({"timestamp":1646153035})
+    #return f"station name is {station}, the time is {time}, and the filters added are {filters}"
 
 app.run()
