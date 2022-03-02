@@ -10,11 +10,41 @@
     <!--<link rel="shortcut icon" type="image/png" href="favicon.png">-->
   </head>
   <body>
-    <label>Y Axis Max: </label><input type="text" id="ymax"><br>
-    <label>Y Axis Min: </label><input type="text" id="ymin"><br>
-    <label>Graph Tension: </label><input type="text" id="tension"><br>
-    <button onclick="setGraphValues()">Set</button>
+    <strong><p>Settings:</p></strong>
+    <label>Weather Station: </label>
+    <select id="station">
+      <option>Station 0 (Mannan's Pi)</option>
+      <option>Station 1 (Arjun's Pi)</option>
+    </select>
+    <br>
+    <label>Time range:</label>
+    <select id="time">
+      <option>Last hour</option>
+      <option>Last 12 hours</option>
+      <option>Last 24 hours</option>
+      <option>last 7 days</option>
+    </select>
+    <br>
+    <label>Graph range: </label><input type="text" id="ymin" size="1"><label> to </label><input type="text" id="ymax" size="1">
+    <br>
+    <label>Graph tension: </label><input type="text" id="tension" size="2">
+    <!--
+    <br>
+    <strong><p>Graph settings:</p></strong>
+    <label>Y Axis Max: </label>
+    <input type="text" id="ymax">
+    <br>
+    <label>Y Axis Min: </label>
+    <input type="text" id="ymin">
+    <br>
+    <label>Graph Tension: </label>
+    <input type="text" id="tension">
+    <br>
+    -->
+    <br>
+    <br>
+    <button onclick="fetchData()">Retrieve Data</button>
     <canvas></canvas>
   </body>
-  <script src="main.js"></script>
+  <script src="/js/main.js"></script>
 </html>
